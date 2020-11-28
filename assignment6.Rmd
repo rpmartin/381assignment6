@@ -1,0 +1,96 @@
+---
+title: "Assignment 6"
+author: "your name here"
+output: 
+  pdf_document:
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE)
+source("assignment6.R")
+```
+**Section #: `r paste("0",section,sep="")`**
+
+
+Students must abide by  [UVic
+  academic regulations](https://www.uvic.ca/calendar/undergrad/index.php#/policy/Sk_0xsM_V?bc=true&bcCurrent=08%20-%20Policy%20on%20Academic%20Integrity&bcGroup=Undergraduate%20Academic%20Regulations&bcItemType=policies)
+ and observe standards of scholarly integrity
+(i.e. no plagiarism or cheating). Therefore, this assignment must be
+taken individually and not with a friend, classmate, or group. You are
+also prohibited from sharing any information about the assignment with
+others. I affirm that I will not give or receive any aid on this assignment 
+and that all work will be my own. **name here**
+
+For global pollutants the policy choices of different jurisdictions can be viewed as a public goods game.  In this experiment we looked at a simple game where each jurisdiction chooses its own emission tax rate.  Firms within a given jurisdiction incur a cost of abatement: we assume that firms respond optimally to the emissions tax within their jurisdiction. Note that the abatement costs incurred by the firms within a jurisdiction are a social cost to that jurisdiction alone. In contrast, the resulting reduction in pollution benefits not only the home jurisdiction but all other jurisdictions as well. Thus we have a classic free-ridership problem where every jurisdiction prefers lower total emissions but does not want to impose the emission taxes required. Overcoming the free-rider problem requires coordinated behaviour, where all jurisdictions choose higher tax rates than what they individually prefer.  All jurisdictions are assumed to be symmetric with $MAC_i=100-e_i$ (this is the aggregate marginal abatement cost within their jurisdiction) and $MD_i=e_1+...e_i+...+e_n$. Firms within each jurisdiction minimize costs by choosing the level of emissions that equates their marginal abatement cost with the tax: $MAC_i=t_i$.  The cost minimizing behaviour of firms implies $e_i=100-t_i$.  Using the sources' optimal responses to the taxes we can write the marginal damage function in terms of the various taxes: $MD_i=100n-t_1-t_2-...-t_n$.
+
+
+The treatments determined how subjects were re-matched between rounds.  In the `not` treatment subjects played all 20 rounds with the same group.  In the `randomly` treatment subjects were randomly re-matched for each round.  Finally in the `assortatively` treatment subjects played each round with players who chose similar tax rates in the previous round.  Higher payoffs can be sustained in public good games if behaviour can be coordinated (each member of the group setting a similar tax rate.)  These treatments were designed to influence how easy it would be to coordinate behaviour. 
+
+# (10 marks)
+
+**In equilibrium each country equates their marginal abatement cost (in terms of $t_i$) with their marginal damages (in terms of $t_1,t_2,...t_n$), ignoring the impact their emissions have out of jurisdiction.  Find the equilibrium tax rates for groups of 1,2,3 and 4.  Hint: remember that all country are symmetrical, so in equilibrium all tax rates should be the same (you can drop subscripts and solve for $t$).**
+
+# (10 marks)
+
+**In contrast to the equilibrium, social optimality (across all
+jurisdictions) requires each jurisdiction to take into account the
+negative impact its pollution causes across all jurisdictions (not
+just its own). i.e. it would be optimal for each country to equate its marginal abatement cost
+(in terms of $t$) to the *aggregate* marginal damages (across all
+jurisdictions).  Symmetry implies that the aggregate marginal damages are
+$n$ times the country's own marginal damage function. What is the
+socially optimal tax rate for groups of 1,2,3,4?**
+
+# (10 marks) 
+
+**Using dataframe `mydf` (or file `mydf1.csv`) create boxplots of the tax rates chosen in the 3 treatments. If you are using R, use function `ggplot` where `data=mydf`, x=`rematching` and  y=`choice`.  Add boxplots with `geom_boxplot` and the observations with `geom_jitter`.  Set `alpha` to a reasonable level in both `geoms`. Label the y axis `tax rate`.**
+
+```{r first_plot}
+#first_plot
+```
+
+# (10 marks) 
+
+**What do you see in the plot above?  Why do you think this is the case?**
+
+# (10 marks) 
+
+**It is possible that the feedback that subjects receive influences their behaviour. Using dataframe `mydf` (or file `mydf1.csv`) create a scatterplot using `geom_jitter` where `x=cum_mean_others`, `y=choice` and `colour = rematching`. The variable `cum_mean_other` gives the average of all the tax choices observed thus far (other than your own choices).  Choose an appropriate value of `alpha` to deal with over-plotting. Add in a `geom_smooth`  with `method="lm"` to show the overall relationship, and give the axes informative labels with`labs(x="",y="")`.**
+
+```{r second_plot}
+#second_plot
+```
+
+# (10 marks) 
+
+**What do you see in the plot above?  Why do you think this is the case?**
+
+
+# (10 marks) 
+
+**Using dataframe `subject_averages` (or file `subject_averages1.csv`) create a scatterplot of `average_choice` vs `average_profit` and colour the datapoints by `rematching`.  If you are using R, use function `geom_point` where x=`average_choice`, y=`average_profit` and colour=`rematching`. Add in a `geom_smooth` with `method="lm"` to show the overall relationship, and give the axes informative labels with `labs(x="",y="")`.**
+
+```{r third_plot}
+#third_plot
+```
+
+# (10 marks) 
+
+**What do you see in the plot above?  Why do you think this is the case?**
+
+
+# (10 marks) 
+
+**Using dataframe `mydf` (or file `mydf1.csv`)  create a spagetti plot (a separate line for each subject) of round vs. choice, with separate plots for each treatment.  If you are using R, use `geom_smooth` where `method="lm"`, `x=round`, `y=choice`, `group=factor(oneid)`, and `colour=total_profit`.  Create separate plots for each treatment using `facet_grid`. I suggest using `scale_color_viridis_c()` for the colour palette.**
+
+```{r fourth_plot}
+#fourth_plot
+```
+
+# (10 marks) 
+
+**What do you see above?  Why do you think this is called a spagetti plot?**
+
+
+
