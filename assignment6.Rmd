@@ -82,7 +82,7 @@ socially optimal tax rate for groups of 1,2,3,4?**
 
 # (10 marks) 
 
-**Using dataframe `mydf` (or file `mydf1.csv`)  create a spagetti plot (a separate line for each subject) of round vs. choice, with separate plots for each treatment.  If you are using R, use `geom_smooth` where `method="lm"`, `x=round`, `y=choice`, `group=factor(oneid)`, and `colour=total_profit`.  Create separate plots for each treatment using `facet_grid`. I suggest using `scale_color_viridis_c()` for the colour palette.**
+**Using dataframe `mydf` (or file `mydf1.csv`)  create a spagetti plot (a separate line for each subject) of round vs. choice, with separate plots for each treatment.  If you are using R, use `geom_smooth` where `method="lm"`, `x=round`, `y=choice`, `group=factor(oneid)`, and `colour=ave_profit`.  Create separate plots for each treatment using `facet_grid`. I suggest using `scale_color_viridis_c()` for the colour palette.**
 
 ```{r fourth_plot}
 #fourth_plot
