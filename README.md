@@ -1,10 +1,8 @@
 # 381assignment6
 
-If and only if you insist on using Excel download a zip file containing the assignment and folder publicdata at  https://github.com/rpmartin/381assignment6  
+Instructions on the installation of R, Rstudio, etc can be found here:
 
-Or, if you are going to use R (which is preferred), Instructions on the installation of R, Rstudio, etc can be found here:
-
-https://bright.uvic.ca/d2l/le/content/75904/viewContent/694287/View
+https://github.com/rpmartin/Rinstall
 
 Once you have everything installed, here is how you get started on assignment 6.
 
