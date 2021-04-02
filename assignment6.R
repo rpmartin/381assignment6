@@ -17,8 +17,6 @@ mydf1 <- read_csv(paste("publicdata1",slash,"tax.csv",sep=""))%>%
 mydf2 <- read_csv(paste("publicdata2",slash,"tax.csv",sep=""))%>%
   mutate(section=2)
 mydf <- bind_rows(mydf1,mydf2)
-spread <- mydf%>%group_by(rematching,round,section)%>%summarize(sd_choice=sd(choice))
-ggplot(spread,aes(x=round,y=sd_choice,colour=rematching))+geom_smooth(method="lm")+geom_point()
 
 mydf <- mydf%>%
   group_by(oneid,section)%>% #group the data by student id so we can calculate...
