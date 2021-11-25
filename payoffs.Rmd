@@ -1,0 +1,46 @@
+---
+title: "Tax experiment payoffs"
+author: "Richard Martin"
+date: "24/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(DT)
+library(here)
+section <- 1
+##########################functions
+get_highest <- function(a_tibble){
+  a_tibble%>%
+    arrange(desc(mean_net_profit))%>%
+    head(n=1)
+}
+############ program
+public_folder <- paste0("publicdata", section)
+all_data <- paste0("tax", section, ".csv")
+mydf <- read_csv(here(public_folder, all_data))%>%
+  filter(round%%2 == 0)%>%#interested in net, not gross profits
+  group_by(max_punish_size, punish_cost, whichgroup, round)%>%
+  nest()%>%
+  mutate(group_size = map(data, nrow))%>%#to get number of people in each group
+  unnest(data)%>%
+  filter(group_size == 3)%>% #only keep groups of 3 (externality worse with more players)
+  group_by(oneid, max_punish_size, punish_cost, .add=FALSE)%>%
+  summarize(mean_net_profit = mean(profit))%>%#calculate the mean net profit for each student (when playing in a group of 3)
+  group_by(max_punish_size, punish_cost, .add=FALSE)%>%
+  nest()%>%
+  mutate(treatment_max=map(data, get_highest))%>% #get the highest mean net profit for each treatment group. 
+  unnest(treatment_max)%>%
+  select(-data)
+```
+## Here are the highest mean payoffs in each of the treatments:
+
+```{r, echo=FALSE}
+colnames(mydf) <- str_to_title(str_replace_all(colnames(mydf), "_", " "))
+datatable(mydf, 
+          rownames = FALSE,
+          options = list(columnDefs = list(list(className = 'dt-center', targets = "_all"))))
+```
+
